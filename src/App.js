@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
+import Home from './components/User/Home';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import AuthorDashboard from './components/ContentAuthor/AuthorDashboard';
+import CreateContent from './components/ContentAuthor/CreateContent';
+import ContentList from './components/ContentAuthor/ContentList';
+import LearnerDashboard from './components/Learner/LearnerDashboard';
+import LearnerCourseList from './components/Learner/LearnerCourseList';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import CourseList from './components/User/CourseList';
+import CourseDetail from './components/User/CourseDetail';
+class App extends React.Component {
+  render() {
+    return (
+    <Router>
+    <Routes >
+        <Route path="/" exact element={<Home/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/author/dashboard" element={<AuthorDashboard/>} />
+        <Route path="/author/create-content" element={<CreateContent/>} />
+        <Route path="/author/content-list" element={<ContentList/>} />
+        <Route path="/learner/dashboard" element={<LearnerDashboard/>} />
+        <Route path="/learner/courses" element={<LearnerCourseList/>} />
+        <Route path="/admin/dashboard" element={<AdminDashboard/>} />
+        <Route path="/courses" exact element={<CourseList/>} />
+        <Route path="/courses/:courseId" element={<CourseDetail/>} />
+    </Routes >
+</Router>
+);
+  }
 }
 
-export default App;
+ export default App;

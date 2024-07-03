@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-const CourseList = () => {
+const LearnerCourseList = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         const fetchCourses = async () => {
-            const response = await axios.get('/courses');
+            const response = await axios.get('/learner/courses');
             setCourses(response.data);
         };
         fetchCourses();
@@ -15,16 +14,14 @@ const CourseList = () => {
 
     return (
         <div>
-            <h2>Available Courses</h2>
+            <h2>My Courses</h2>
             <ul>
                 {courses.map(course => (
-                    <li key={course.id}>
-                        <Link to={`/courses/${course.id}`}>{course.title}</Link>
-                    </li>
+                    <li key={course.id}>{course.title}</li>
                 ))}
             </ul>
         </div>
     );
 };
 
-export default CourseList;
+export default LearnerCourseList;
